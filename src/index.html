@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<script>/*Хэдеры*/</script>
+<html lang="en" xml:lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Remory</title>
+    <br>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.muicss.com/mui-latest/js/mui.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+
+</head>
+<body>
+
+<script>/*///////////////    ШАБЛОН ГЛАВНОЙ СТРАНИЦЫ     ///////////////*/</script>
+
+<div id="sidebar">
+    <div class="remTitle">
+        Remory
+        <br>
+    </div>
+    <div class = "unRemTitle" id="current_date_time_block"></div>
+
+    <script type="text/javascript">
+
+        /* функция добавления ведущих нулей */
+        /* (если число меньше десяти, перед числом добавляем ноль) */
+        function zero_first_format(value)
+        {
+            if (value < 10)
+            {
+                value='0'+value;
+            }
+            return value;
+        }
+
+        /* функция получения текущей даты и времени */
+        function date_time()
+        {
+            var current_datetime = new Date();
+            var day = zero_first_format(current_datetime.getDate());
+            var month = zero_first_format(current_datetime.getMonth()+1);
+            var year = current_datetime.getFullYear();
+            var hours = zero_first_format(current_datetime.getHours());
+            var minutes = zero_first_format(current_datetime.getMinutes());
+            var seconds = zero_first_format(current_datetime.getSeconds());
+
+            return day+"."+month+"."+year+" "+hours+":"+minutes+":"+seconds;
+        }
+
+        /* выводим текущую дату и время на сайт в блок с id "current_date_time_block" */
+        setInterval(function () {
+            document.getElementById('current_date_time_block').innerHTML = date_time();
+        }, 1000);
+    </script>
+</div>
+
+<button class="ss" id="wrapper-btn">Вход</button>
+
+<div id="content" class="mui-container-fluid">
+    <div class="mui-row">
+        <div class="mui-col-sm-10 mui-col-sm-offset-1">
+            <br>
+            <br>
+            <div class="TitleD-Input">Создание события:</div>
+            <div class="mui-divider" ></div>
+            <br>
+
+            <form class="mui-form" id="form" >
+                <div class="mui-textfield mui-textfield--float-label" >
+                    <div class="Input">
+                        <input id="question-input" class="Input-text" placeholder="|">
+                    </div>
+                </div>
+                <div>
+                    <label class = "DataInput" for="eventDay">Предпочтительная дата события:</label>
+                    <input class = "EventDay" type="date" id="eventDay" name="eventDay">
+                </div>
+                <br>
+                <button class="ee" id = "buttonInput">Добавить</button>
+            </form>
+
+            <br>
+            <br>
+            <div class="TitleD-Input">Все события</div>
+            <div class="mui-divider"></div>
+            <br>
+            <div id="list"></div>
+        </div>
+    </div>
+</div>
+
+<div id="modal" class="modal"></div>
+
+
+</body>
+</html>
